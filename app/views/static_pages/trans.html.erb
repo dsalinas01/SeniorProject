@@ -1,0 +1,48 @@
+<!--
+<h1>StaticPages#trans</h1>
+<p>Find me in app/views/static_pages/trans.html.erb</p>
+-->
+
+<% provide(:title, "trans") %>
+<div>
+   <h4>
+      Welcome, <%= @users.name %>!
+  </h4>
+  <br>
+  <h5>
+  Click on the an icon below to continue:
+  </h5>
+    <div class = "jumbotron other-color">
+        <div class="center">
+            <table class="center" style="width:100%">
+                <tr>
+                    <td>Patient Management: </td>
+                    <td colspan=2></td>
+                    <td colspan=2>Ordering System:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <%=link_to image_tag( "Records.png", :size=> "125x135"), patient_path %>
+                    </td>
+                    <td colspan=2></td>
+                    <td colspan=2>
+                        <%=link_to image_tag( "Order Image.png", :size=> "125x135"), login_path %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Menu Status: </td>
+                    <td colspan=2></td>
+                    <td>User Settings:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <%=link_to image_tag( "cafeteria_icon.png", class: "myImage", :size=> "125x135"), "#" %>
+                    </td>
+                    <td colspan=2></td>
+                    <td colspan=2>
+                        <%=link_to image_tag( "gear_tools.png", :size=> "125x135"), edit_user_path(current_user) %>
+                    </td </tr>
+            </table>
+        </div>
+    </div>
+</div>
