@@ -5,6 +5,7 @@ class PatientsController < ApplicationController
 
   def new
     @patient = Patient.new(patient_params)
+    @room = Room.all
   end
   def create
     params.permit!
@@ -21,6 +22,6 @@ class PatientsController < ApplicationController
 
     def patient_params
       params.require(:patient).permit(:fname, :lname, :MRN, :SSN,
-                                      :birthday) if params[:patient]
+                                  :birthday, :room_id) if params[:patient]
     end
 end
