@@ -5,16 +5,10 @@
 
 <div id="buttons" align="center">
     <a href="#" id="1" class="mybutton myred">
-        <button>Add Patients</button>
+        <button class="btn btn-primary">Add Patients</button>
     </a>
     <a href="#" id="2" class="mybutton myblue">
-        <button>Modify Patients</button>
-    </a>
-    <a href="#" id="3" class="mybutton myblue">
-        <button>Change Location??</button>
-    </a>
-    <a href="#" id="4" class="mybutton myblue">
-        <button>Something</button>
+        <button class="btn btn-success">Modify Patients</button>
     </a>
 </div>
 
@@ -40,17 +34,40 @@
           
           <%= f.label :Room_number %>
           <%= f.select(:room_id, options_for_select(@room.collect{ |u| [u.rmnumber, u.id] })) %>
+          
+          <%= f.label :Diet %>
+          <%= f.select(:diet_id, options_for_select(@diet.collect{ |u| [u.name, u.id] })) %>
     
           <%= f.submit "Add New Patient", class: "btn btn-primary" %>
         <% end %>
     </div>
-    
     <div id="2" class="mydivhide">
-       <% Patient.all.each do |patient| %>
-         <%= patient.fname %>
-         <%= patient.lname %>
-         <%= patient.room.rmnumber %>
-       <% end %>   
+        <table class="table table-striped" >
+          <thead>
+            <tr>
+              <th>Room Number</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>MRN</th>
+              <th>Order</th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% @patients.each do |session| %>
+              <tr>
+                <td><%= session.room.rmnumber %></td>
+                <td><%= session.fname %></td>
+                <td><%= session.lname %></td>
+                <td><%= session.MRN %></td>
+                <td><%= session.diet.name %></td>
+                <td>
+                    <%= link_to 'Change Information', controller: 'patients', action: 'edit', id: session.id %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
     </div>
-    
 </div>

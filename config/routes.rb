@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
  
 
+  get 'orders/new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -69,6 +71,11 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get 'trans'   => 'static_pages#trans'
+  get "orders" => "orders#index"
+  get 'orders_n' => "orders#new"
+  get 'orders/:id/new_order' => 'orders#new'
+  post 'patients/:id/update' => 'patients#update'
+  
   resources :users
   resources :patients
 end

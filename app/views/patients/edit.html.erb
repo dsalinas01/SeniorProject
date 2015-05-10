@@ -1,0 +1,26 @@
+<%= form_for :patient, url: {action: "update"}, method: :POST do |f| %>
+  <%= render 'shared/error_patient_messages' %>
+
+  <%= f.label :First_Name%>
+  <%= f.text_field :fname, class: 'form-control' %>
+
+  <%= f.label :Last_name %>
+  <%= f.text_field :lname, class: 'form-control' %>
+
+  <%= f.label :MRN %>
+  <%= f.number_field :MRN, class: 'form-control' %>
+
+  <%= f.label :SSN %>
+  <%= f.number_field :SSN, class: 'form-control' %>
+  
+  <%= f.label :birthday %>
+  <%= f.date_field :birthday, class: 'form-control' %>
+  
+  <%= f.label :Room_number %>
+  <%= f.select(:room_id, options_for_select(@room.collect{ |u| [u.rmnumber, u.id] })) %>
+  
+  <%= f.label :Diet %>
+  <%= f.select(:diet_id, options_for_select(@diet.collect{ |u| [u.name, u.id] })) %>
+
+  <%= f.submit "Update Patient", class: "btn btn-primary" %>
+<% end %>

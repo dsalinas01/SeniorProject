@@ -6,6 +6,8 @@ class PatientsController < ApplicationController
   def new
     @patient = Patient.new(patient_params)
     @room = Room.all
+    @diet = Diet.all
+    @patients = Patient.all
   end
   def create
     params.permit!
@@ -13,15 +15,33 @@ class PatientsController < ApplicationController
       # Handle a successful save.
     if @patient.save
         flash[:success] = "Patient had been Added"
-        redirect_to trans_path
+        redirect_to patient_path
     else
       render 'new'
+    end
+  end
+  def edit
+    this_session = Patient.find(params[:id])
+    @first = this_session.fname
+    @last = this_session.lname
+    @patient = Patient.find(params[:id])
+    @diet = Diet.all 
+    @room = Room.all
+  end
+   def update
+    @Patient = Patient.find(params[:id])
+    if @Patient.update_attributes(patient_params)
+      # Handle a successful update.
+      flash[:success] = "Patient updated"
+      redirect_to patient_path
+    else
+      render 'edit'
     end
   end
    private
 
     def patient_params
       params.require(:patient).permit(:fname, :lname, :MRN, :SSN,
-                                  :birthday, :room_id) if params[:patient]
+                                  :birthday, :room_id, :diet_id) if params[:patient]
     end
 end

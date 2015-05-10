@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require bootstrap
 var ready
 ready = (function() {
     $("#buttons a").click(function() {
