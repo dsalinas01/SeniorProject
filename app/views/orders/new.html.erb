@@ -1,1 +1,31 @@
-<h2><%= @first %> <%= @last %></h2>
+<% provide(:title, "Add Order") %>
+<div style="background-color: #CCFFFF">
+    <h4>Patient name:&nbsp; <%= @first %>&nbsp;<%= @last %> </br>
+    Room: <%=@roomnumber %>, Phone Number: <%=@phone %> </br>
+    Diet: <%=@diet %>
+    </h4>
+</div>
+<div class="jumbotron">
+    <B>Item name:</B>
+    <div id="currentOrder" style="overflow-y: scroll; height:200px;">
+       
+    </div>
+    </br>
+    <div>
+        button here to submit
+    </div>
+    </br>
+    <div id="FoodCategories">
+       <% @foods.each do |food, index| %>
+       <a href="#" id=<%= food.id %> class="mybutton myblue">
+            <button class="btn btn-success"><%= food.name %></button>
+        <% end %>
+    </div>
+    <br>
+    <div id="food">
+    
+        
+    </div>
+</div>
+          
+

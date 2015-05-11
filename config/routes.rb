@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   get 'orders/:id/new_order' => 'orders#new'
   post 'patients/:id/update' => 'patients#update'
   
+  get 'orders/foods' => 'orders#foods'
   resources :users
   resources :patients
 end
