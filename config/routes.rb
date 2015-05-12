@@ -69,14 +69,16 @@ Rails.application.routes.draw do
   get    'patients'  => 'patients#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
+  get 'logout'  => 'sessions#destroy' 
   get 'trans'   => 'static_pages#trans'
   get "orders" => "orders#index"
   get 'orders_n' => "orders#new"
   get 'orders/:id/new_order' => 'orders#new'
   post 'patients/:id/update' => 'patients#update'
-  
+  get 'patients/:id/destroy' => 'patients#destroy'
+   get "orders/index" => "orders#index"
   get 'orders/foods' => 'orders#foods'
+  post 'orders/:id/orders/create' => 'orders#new'
   resources :users
   resources :patients
 end

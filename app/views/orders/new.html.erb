@@ -1,3 +1,4 @@
+
 <% provide(:title, "Add Order") %>
 <div style="background-color: #CCFFFF">
     <h4>Patient name:&nbsp; <%= @first %>&nbsp;<%= @last %> </br>
@@ -7,12 +8,14 @@
 </div>
 <div class="jumbotron">
     <B>Item name:</B>
+    
     <div id="currentOrder" style="overflow-y: scroll; height:200px;">
        
     </div>
     </br>
-    <div>
-        button here to submit
+    <div id = "submit">
+        <a href="#" id=<%=@id %> class="mybutton myblue">
+            <button class="btn btn-info">Submit Order</button>
     </div>
     </br>
     <div id="FoodCategories">

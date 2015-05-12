@@ -1,3 +1,3 @@
 class Order < ActiveRecord::Base
-    belongs_to :Patient, dependent :destroy
+    belongs_to :Patient
 end

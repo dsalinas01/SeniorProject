@@ -64,6 +64,9 @@
                 <td>
                     <%= link_to 'Change Information', controller: 'patients', action: 'edit', id: session.id %>
                 </td>
+                <td>
+                    <%= link_to 'destroy', controller: 'patients', action: 'destroy', id: session.id %>
+                </td>
               </tr>
             <% end %>
           </tbody>

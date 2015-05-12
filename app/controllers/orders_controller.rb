@@ -10,9 +10,21 @@ class OrdersController < ApplicationController
         @roomnumber = this_session.room.rmnumber
         @phone = this_session.room.phone
         @diet = this_session.diet.name
-        
+        @id = this_session.id
         @foods = Category.all
     end
+    
+    def create
+    params.permit!
+    @order = Order.new(params[:order])
+      # Handle a successful save.
+    if @order.save
+        flash[:success] = "Order saved"
+        redirect_to trans_path
+    else
+      render 'new'
+    end
+  end
     
     def foods
      cateid = params[:category_id]
@@ -26,5 +38,11 @@ class OrdersController < ApplicationController
     
     def new_order
     render '#'
+    end
+    
+    private
+
+    def user_params
+      params.require(:order).permit(:food_id) if params[:user]
     end
 end

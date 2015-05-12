@@ -11,7 +11,7 @@ class PatientsController < ApplicationController
   end
   def create
     params.permit!
-   @patient = Patient.new(params[:patient])
+    @patient = Patient.new(params[:patient])
       # Handle a successful save.
     if @patient.save
         flash[:success] = "Patient had been Added"
@@ -37,6 +37,13 @@ class PatientsController < ApplicationController
     else
       render 'edit'
     end
+   end
+   
+  def destroy
+    this_session = Patient.find(params[:id])
+    this_session.destroy
+    flash[:success] = "Patient removed"
+      redirect_to patient_path
   end
    private
 

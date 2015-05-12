@@ -15,8 +15,13 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+//= require bootstrap-sprockets
+
+
+var ids
 var ready
 ready = (function() {
+    ids = [];
     $("#buttons a").click(function() {
         var id = $(this).attr("id");
         $("#pages div").css("display", "none");
@@ -28,13 +33,27 @@ ready = (function() {
         //$("#food").html("hello" + id)
         FoodCategories(id);
     });
-    
-    $(document).on('click', '#food a', function(){ 
-        var name= $(this).attr("text");
-        $("#currentOrder").append(getOrdertableHTML(name));
+     $("#submit a").click(function() {
+         var id = $(this).attr("id");
+        jQuery.each( ids, function( i, val ){
+                jQuery.ajax({
+                    type: "POST",
+                    url: "orders/create",
+                    data: val, id
+                  
+                });
+        });
+        window.location = "/orders/index"
     });
-
+    $(document).off('click').on('click', '#food a', function(){
+        var name= $(this).attr("text");
+        var id= $(this).attr("id");
+        $("#currentOrder").append(getOrdertableHTML(name, id));
+     
+    });
     //FoodCategories();
+    
+    $('.dropdown-toggle').dropdown(); 
 
 });
 
@@ -42,7 +61,7 @@ $(document).ready(ready);
 $(document).on('page:load', ready);
 
 function FoodCategories(id) {
-    var divpath =  $("#food")
+    var divpath =  $("#food");
     divpath.empty();
     $.get('/orders/foods', {category_id: id},function(data) {
             data.forEach(function(foodcat) {
@@ -56,9 +75,8 @@ function getFoodbuttonHtml(foodcat){
     return html;
 }
 
-function getOrdertableHTML(name){
-    var html = '</br>'
-    html += name;
+function getOrdertableHTML(name, id){
+    var html = '<label for=' + id +'>' + name + '</label>' +'</br>';
+    ids.push(id);
     return html;
-   
 }

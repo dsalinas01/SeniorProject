@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20150511152942) do
     t.datetime "updated_at"
     t.integer  "room_id"
     t.integer  "diet_id"
-  end 
+  end
 
   create_table "rooms", force: true do |t|
     t.integer  "rmnumber"
